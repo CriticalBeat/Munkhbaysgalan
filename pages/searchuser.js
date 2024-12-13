@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useRouter } from "next/router";
 const usersData = [
     {
         id: 1,
@@ -35,7 +35,7 @@ const usersData = [
 
 export default function Home() {
     const [search, setSearch] = useState("");
-
+    const router = useRouter();
     const filteredData = usersData.filter((user) =>
         user.name.toLowerCase().includes(search.toLowerCase())
     );
@@ -44,6 +44,9 @@ export default function Home() {
 
     return (
         <div className="w-screen h-screen bg-white">
+            <button onClick={() => {router.push("Universal")}} className="w-24 h-12 bg-white rounded-xl font-mono m-4">
+                Go back
+            </button>
             <div className="p-6 max-w-4xl mx-auto">
                 <div className="flex items-center justify-between mb-6">
                     <h1 className="text-3xl font-bold font-mono text-black">Хэрэглэгчийн жагсаалт</h1>
@@ -55,16 +58,22 @@ export default function Home() {
                     />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                    {filteredData.map((user) => {
-                        return (
-                            <div
-                                key={user.id}
-                                className="font-bold font-mono mb-8 p-4 h-12 flex items-center border-2 border-black/50 rounded-lg shadow-xl text-black"
-                            >
-                                {user.id}. {user.name}: {user.email}
-                            </div>
-                        );
-                    })}
+                                    {
+                        filteredData.length === 0 ? (
+                            <div className="font-bold text-center text-black">No results found</div>
+                        ) : (
+                            filteredData.map((user) => {
+                                return (
+                                    <div
+                                        key={user.id}
+                                        className="font-bold font-mono mb-8 p-4 h-12 flex items-center border-2 border-black/50 rounded-lg shadow-xl text-black"
+                                    >
+                                        {user.id}. {user.name}: {user.email}
+                                    </div>
+                                );
+                            })
+                        )
+                    }
                 </div>
             </div>
         </div>

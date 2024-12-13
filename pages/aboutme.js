@@ -1,8 +1,13 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
   return (
-  <div className="">
+  <div className="bg-black">
+    <button onClick={() => {router.push("Universal")}} className="w-24 h-12 bg-white rounded-xl font-mono m-4 text-black">
+      Go back
+    </button>
     <div className="bg-black text-black flex justify-center items-center h-screen">
     <div className="column pr-20">
     <p className="text-xl font-bold text-white font-mono transition ease-in-out delay-150 hover:text-green-600">My name is...</p>

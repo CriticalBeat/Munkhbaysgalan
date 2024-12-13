@@ -1,7 +1,8 @@
     import { useState } from "react";
-
+    import { useRouter } from "next/router";
     export default function Home(){
         const[grid, setGrid] = useState(false);
+        const router = useRouter();
         const data = [
             {
                 id: 1,
@@ -41,7 +42,11 @@
             },
         ];
         return(
-            <div className="p-6 max-w-4xl mx-auto">
+            <div className="w-full h-full">
+                <button onClick={() => {router.push("Universal")}} className="w-24 h-12 bg-white rounded-xl font-mono m-4">
+                Go back
+            </button>
+                <div className="p-6 max-w-4xl mx-auto">
                 <div className="flex items-center justify-between mb-6">
                     <h1 className="text-3xl font-bold">Нийтлэлүүд</h1>
                     <button
@@ -62,6 +67,7 @@
                         );
                     })}
                 </div>
+            </div>
             </div>
         );
     }

@@ -1,7 +1,8 @@
 import Image from "next/image";
 import localFont from "next/font/local";
-
+import { useRouter } from "next/router";
 export default function Home() {
+  const router = useRouter();
   return (
   <div className="">
     <div className="bg-black  text-white flex h-screen">
@@ -43,6 +44,9 @@ export default function Home() {
             <p className=" text-white font-bold">Settings</p>
           </div>
         </div>
+        <button onClick={() => {router.push("Universal")}} className="w-24 h-12 bg-white rounded-xl font-mono m-4 text-black">
+                Go back
+            </button>
       </div>
     </div>
     <div className="bg-gray-800 w-2/3 h-12 rounded-xl flex items-center mt-4 ml-8">
